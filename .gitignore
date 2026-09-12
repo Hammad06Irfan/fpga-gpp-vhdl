@@ -1,0 +1,14 @@
+db/
+incremental_db/
+output_files/
+simulation/
+*.bak
+*.bakup
+*.rpt
+*.summary
+*.smsg
+*.done
+*.jdi
+*.pin
+*.pof
+*.sof
