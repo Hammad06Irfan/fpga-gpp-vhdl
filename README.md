@@ -8,23 +8,23 @@ An FPGA-based 8-bit General-Purpose Processor (GPP) datapath and control unit im
 
 The datapath receives two 8-bit inputs (A and B) and sequences operations through an instruction controller driven by student ID sequencing:
 
-                       +-------------------+
-                       |    Moore FSM      | (Counts states 0 to 8,
-                       |    (fsm9.vhd)     |  outputs 4-bit Student ID)
-                       +---------+---------+
-                                 |
-                                 | current_state[3..0]
-                                 v
-                       +-------------------+
-                       |   4:16 Decoder    |
-                       |   (dec4x16.vhd)   |
-                       +---------+---------+
-                                 |
-                                 | OP[15..0] (1-hot microcode)
-                                 v
-  A[7..0] ---> [ Latch 1 ] ---> A[7..0] \
+                                         +-------------------+
+                                         |    Moore FSM      | (Counts states 0 to 8,
+                                         |    (fsm9.vhd)     |  outputs 4-bit Student ID)
+                                         +---------+---------+
+                                                   |
+                                                   | current_state[3..0]
+                                                   v
+                                         +-------------------+
+                                         |   4:16 Decoder    |
+                                         |   (dec4x16.vhd)   |
+                                         +---------+---------+
+                                                   |
+                                                   | OP[15..0] (1-hot microcode)
+                                                   |
+    A[7..0] ---> [ Latch 1 ] ---> A[7..0] \        v
                                          +--> [ ALU Core ] ---> R1[3..0], R2[3..0], neg
-  B[7..0] ---> [ Latch 2 ] ---> B[7..0] /     (Problem 1/2/3)         |
+    B[7..0] ---> [ Latch 2 ] ---> B[7..0] /     (Problem 1/2/3)         |
                                                                       v
                                                             [ 7-Segment Decoders ]
                                                             (sseg.vhd / sseghex.vhd)
